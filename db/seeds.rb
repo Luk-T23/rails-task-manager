@@ -7,3 +7,10 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+p 'adding 20 Tasks..'
+
+20.times do
+  Task.create(name: Faker::FunnyName.name, details: Faker::Quote.famous_last_words)
+end
+
+p 'Done adding Tasks!'

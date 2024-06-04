@@ -1,1 +1,7 @@
-<h2>Just to show the page is posting</h2>
+<h2>Task</h2>
+
+<% @tasks.each do |task| %>
+<li>Name: <%= task.name %></li>
+<li>Details: <%= task.details %></li>
+<br>
+<% end %>
