@@ -3,6 +3,10 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
+  def show
+    @task = Task.find(params[:id])
+  end
+
   def create
     Task.create(:name, :details)
     # creates a new task
