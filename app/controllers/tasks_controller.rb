@@ -7,9 +7,13 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def new
+    @creating = Task.new
+  end
+
   def create
-    Task.create(:name, :details)
-    # creates a new task
+    Task.create(task_params)
+    redirect_to root_path
   end
 
   def update
@@ -24,5 +28,11 @@ class TasksController < ApplicationController
     Task.find_by(:name)
     Task.destroy
     # deletes a task
+  end
+
+  private
+
+  def task_params
+    params.require(:task).permit(:name, :details)
   end
 end
