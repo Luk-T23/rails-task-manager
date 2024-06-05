@@ -1,36 +1,40 @@
 class TasksController < ApplicationController
+  before_action :find_task, only: [:show, :edit, :destroy, :update]
   def index
     @tasks = Task.all
   end
 
   def show
-    @task = Task.find(params[:id])
   end
 
   def new
-    @creating = Task.new
+    @task = Task.new
   end
 
   def create
-    Task.create(task_params)
+    @task = Task.create(task_params)
     redirect_to root_path
   end
 
+  def edit
+  end
+
   def update
-    Task.find_by(:name)
    # Task.title = ???
    # Task.details = ???
     Task.save
-    # updates/changes a task
   end
 
   def destroy
-    @identity = Task.find(params[:id])
-    @identity.destroy ? flash[:success] = 'Task deleted succesfully' : flash[:error] = 'Deletion failed'
+    @task.destroy ? flash[:success] = 'Task deleted succesfully' : flash[:error] = 'Deletion failed'
     redirect_back(fallback_location: root_path)
   end
 
   private
+
+  def find_task
+    @task = Task.find(params[:id])
+  end
 
   def task_params
     params.require(:task).permit(:name, :details)

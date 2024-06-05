@@ -1,2 +1,4 @@
 <p>Details: <%= Task.find(params[:id]).details %></p>
+<%= link_to "Edit", edit_task_path %>
+<br>
 <%= link_to "Back to list", root_path %>
