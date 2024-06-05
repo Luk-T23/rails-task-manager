@@ -20,9 +20,9 @@ class TasksController < ApplicationController
   end
 
   def update
-   # Task.title = ???
-   # Task.details = ???
-    Task.save
+    @task.update(task_params)
+    @task.save
+    redirect_to root_path
   end
 
   def destroy
