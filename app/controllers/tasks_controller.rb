@@ -25,9 +25,9 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    Task.find_by(:name)
-    Task.destroy
-    # deletes a task
+    @identity = Task.find(params[:id])
+    @identity.destroy ? flash[:success] = 'Task deleted succesfully' : flash[:error] = 'Deletion failed'
+    redirect_back(fallback_location: root_path)
   end
 
   private
